@@ -25,7 +25,7 @@ class InventoriesController < ApplicationController
   end
 
   def update
-    if @inventory.update(inventory_params)
+    if @inventory.save(inventory_params)
       redirect_to @inventory, notice: 'Inventory was successfully updated.'
     else
       render action: 'edit'
