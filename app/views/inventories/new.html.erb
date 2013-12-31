@@ -1,0 +1,38 @@
+<h1>New Inventory</h1>
+
+<% if @inventory.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@inventory.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+  <ul>
+    <% @inventory.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_for :inventory, url: inventories_path do |f| %>
+
+<div class="field">
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+</div>
+<br>
+<div class="field">
+  <%= f.label :description %><br>
+  <%= f.text_field :description %>
+</div>
+<br>
+<div class="field">
+  <%= f.label :quantity %><br>
+  <%= f.text_field :quantity %>
+</div>
+<br>
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+<% end %>
+
+<% link_to 'Back', inventories_path %>
