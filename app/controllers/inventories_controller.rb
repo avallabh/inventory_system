@@ -1,11 +1,12 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  # before_action :set_inventory, only: [:show, :edit, :update, :destroy]
 
   def index
     @inventories = Inventory.all
   end
 
   def show
+    @inventory = Inventory.find(params[:id])
   end
 
   def new
@@ -13,6 +14,7 @@ class InventoriesController < ApplicationController
   end
 
   def edit
+    @inventory = Inventory.find(params[:id])
   end
 
   def create
@@ -25,7 +27,8 @@ class InventoriesController < ApplicationController
   end
 
   def update
-    if @inventory.save(inventory_params)
+    @inventory = Inventory.find(params[:id])
+    if @inventory.update(inventory_params)
       redirect_to @inventory, notice: 'Inventory was successfully updated.'
     else
       render action: 'edit'
@@ -33,6 +36,7 @@ class InventoriesController < ApplicationController
   end
 
   def destroy
+    @inventory = Inventory.find(params[:id])
     @inventory.destroy
       redirect_to @inventory
   end

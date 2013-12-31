@@ -17,4 +17,9 @@ feature "Employee adds a food" do
     expect(page).to have_content "can't be blank"
   end
 
+  it "creates and saves an object" do
+    test = FactoryGirl.create(:inventory)
+    expect(Inventory.count).to eq(1)
+  end
+
 end
